@@ -1,0 +1,46 @@
+{% load static %} 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class='modal' id='delModal'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-body bg-danger text-white'>
+                Cancel this update?
+            </div>
+            <div class='modal-footer'>
+                <button type='button' data-dismiss='modal'>Go back</button>
+                <a href="/"> 
+                    <button type='button'>Cancel</button>
+                </a>
+                
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <form action="/edit/{{post.id}}/" method='POST'>
+        {% csrf_token %}
+        
+        <input type="text" name="name" placeholder="Name" value="{{post.name}}" required />
+        <textarea name="body" placeholder="Tell us anything" required>{{post.body}}</textarea>
+        <label for={{post.name}}></label>
+        <button type='submit'>Update</button>
+        <button type='button' id='delete'>Cancel</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#delete').click(function(){
+            $('#delModal').modal('show');
+        });
+    });
+</script>
+
